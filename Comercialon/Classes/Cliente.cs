@@ -6,27 +6,41 @@ namespace Comercialon.Classes
 {
     public class Cliente
     {
-        //declaração de atributo
+        //declaração de Propriedade
         //private int id;
-
+        
         //public int Id { get => id; set => id = value; }
         public int Id { get; set; }
-        public int Nome { get; set; }
+        public string Nome { get; set; }
+        public string Cpf { get; set; }
+        public string Email { get; set; }
+        public string Telefone { get; set; }
+        public Endereco Endereco { get; set; }
+        public bool Ativo { get; set; }
         //metodos cronstrutores
-        public Cliente()
+        public Cliente() { Id = 0; }
+
+        public Cliente(string nome, string cpf, string email, string telefone, bool ativo = true, Endereco endereco = null)
         {
+            Nome = nome;
+            Cpf = cpf;
+            Email = email;
+            Telefone = telefone;
+            Endereco = endereco;
+            Ativo = ativo;
         }
 
-        public Cliente(int id, int nome)
+        public Cliente(int id, string nome, string cpf, string email, string telefone, bool ativo = true, Endereco endereco = null)
         {
             Id = id;
             Nome = nome;
+            Cpf = cpf;
+            Email = email;
+            Telefone = telefone;
+            Endereco = endereco;
+            Ativo = ativo;
         }
 
-        public Cliente(int nome)
-        {
-            Nome = nome;
-        }
         //metodos da classe
         public void Inserie() 
         { }
@@ -45,3 +59,13 @@ namespace Comercialon.Classes
         }
     }
 }
+//public Cliente(int id, int nome)
+//{
+//    Id = id;
+//    Nome = nome;
+//}
+
+//public Cliente(int nome)
+//{
+//    Nome = nome;
+//}
