@@ -50,6 +50,7 @@ namespace Comercialon.Classes
         public bool Alterar() 
         {
             return true;
+
         }
         public void BuscarPorId(int id)
         {

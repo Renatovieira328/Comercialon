@@ -46,7 +46,7 @@ namespace Comercialon.Classes
         }
         public bool Alterar()
         {
-            return true;
+            return false;
         }
         public void BuscarPorId(int id)
         {
