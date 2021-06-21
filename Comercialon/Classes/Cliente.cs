@@ -43,7 +43,21 @@ namespace Comercialon.Classes
 
         //metodos da classe
         public void Inserie() 
-        { }
+        {   //inserir usando concatenações
+
+            //inserir utilizando expressões mysql
+
+            //inserir utilizando procedures
+            var cmd = Banco.abrir();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "insert clientes " +
+                "(nome,cpf,email,telefone,ativo)" +
+                "values('"+Nome+"', '"+Cpf+"', '"+Email+"', '"+Telefone+"', default); ";
+            cmd.ExecuteNonQuery();
+            cmd.CommandText = "Select @@identity";
+            Id = Convert.ToInt32(cmd.ExecuteScalar());
+
+        }
         public bool Alterar(int id)
         {
             return true;
