@@ -30,6 +30,9 @@ namespace Comercialon.Classes
             Ativo = ativo;
         }
 
+        internal void Inserir()
+        { }
+
         public Cliente(int id, string nome, string cpf, string email, string telefone, bool ativo = true, List<Endereco> endereco = null)
         {
             Id = id;
