@@ -5,11 +5,12 @@ using MySql.Data.MySqlClient;
 
 namespace Comercialon.Classes
 {   
-    /// <summary>
-    /// abre uma conexão para um banco de dados MySql
-    /// </summary>
     public static class Banco
     {
+        /// <summary>
+        /// Abre uma conexão para um banco de dados MySql
+        /// </summary>
+        /// <returns>Objeto de comandos Mysql</returns>
         public static MySqlCommand abrir()
         {
             MySqlCommand cmd = new MySqlCommand();

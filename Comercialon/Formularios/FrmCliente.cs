@@ -33,9 +33,7 @@ namespace Comercialon
                 txtTelefone.Text
             );
             cliente.Inserir();
-            Endereco endereco = new Endereco(
-                txtLogradouro.Text,txtNumero.Text,txtComplemento.Text);
-            MessageBox.Show("Cliente " + cliente.Id + " inserido.");
+
         }
 
         private void txtEmail_TextChanged(object sender, EventArgs e)
@@ -51,6 +49,11 @@ namespace Comercialon
             {
                 button1.Enabled = false;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

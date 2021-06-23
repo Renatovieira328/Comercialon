@@ -15,7 +15,7 @@ namespace Comercialon.Classes
         public string Cpf { get; set; }
         public string Email { get; set; }
         public string Telefone { get; set; }
-        public List<Endereco> Endereco { get; set; }
+        public List<Endereco> Enderecos { get; set; }
         public bool Ativo { get; set; }
         //metodos cronstrutores
         public Cliente() { Id = 0; }
@@ -26,7 +26,7 @@ namespace Comercialon.Classes
             Cpf = cpf;
             Email = email;
             Telefone = telefone;
-            Endereco = endereco;
+            Enderecos = endereco;
             Ativo = ativo;
         }
 
@@ -40,7 +40,7 @@ namespace Comercialon.Classes
             Cpf = cpf;
             Email = email;
             Telefone = telefone;
-            Endereco = endereco;
+            Enderecos = endereco;
             Ativo = ativo;
         }
 
@@ -68,14 +68,46 @@ namespace Comercialon.Classes
         public static List<Cliente> ListarTodos()
         {
             List<Cliente> lista = new List<Cliente>();
+            string query = "select * from clientes";
+            var cmd = Banco.abrir();
+            cmd.CommandText = query;
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                lista.Add(new Cliente(
+                    dr.GetInt32(0),
+                    dr.GetString(1),
+                    dr.GetString(2),
+                    dr.GetString(3),
+                    dr.GetString(4),
+                    dr.GetBoolean(5),
+                    Endereco.ListaEnderecos(dr.GetInt32(0))
+                    ));
+            }
             return lista;
         }
         public void BuscarPorId(int Id)
         {
-
-        }
+            string query = "select * from clientes where id = " + Id;
+            var cmd = Banco.abrir();
+            cmd.CommandText = query;
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Id = dr.GetInt32(0);
+                Nome = dr.GetString(1);
+                Cpf = dr.GetString(2);
+                Email = dr.GetString(3);
+                Telefone = dr.GetString(4);
+                Ativo = dr.GetBoolean(5);
+                Enderecos = Endereco.ListaEnderecos(Id);
+            } 
+         }
+                    
     }
 }
+    
+
 //public Cliente(int id, int nome)
 //{
 //    Id = id;
