@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Comercialon.Classes
 {
     public class Marca
     {
-        private readonly int idMarca;
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Sigla { get; set; }
@@ -22,6 +17,8 @@ namespace Comercialon.Classes
             Nome = nome;
             Sigla = sigla;
         }
+        internal void inserie()
+        { }
 
         public Marca(int id, string nome, string sigla)
         {
@@ -29,19 +26,16 @@ namespace Comercialon.Classes
             Nome = nome;
             Sigla = sigla;
         }
-        public void inserir()
+        public void Inserie()
         {
-            string query = "insert marca values(" +
-               Nome + "," +
-               "," + Sigla + "')";
             var cmd = Banco.abrir();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = query;
+            cmd.CommandText = "insert marca " +
+                "(nome,sigla)" +
+                "values('" + Id + "','" + Nome + "', '"+ Sigla + "''";
             cmd.ExecuteNonQuery();
-
+            cmd.CommandText = "Select @@identity";
+            Id = Convert.ToInt32(cmd.ExecuteScalar());
         }
-
-
-
     }
 }

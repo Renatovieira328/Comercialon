@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Comercialon.Classes
 {
@@ -70,7 +67,7 @@ namespace Comercialon.Classes
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id">id do cliente na tabela endereço. Use 0 se quiser listar todos com limite de resultados</param>
+        /// <param name="id">id do cliente na tabela endereçou use 0 se quiser listar todos com limite de resultados</param>
         /// <param name="incial">Valor incial da base de consulta. Zero é o valor padrão</param>
         /// <param name="limit">Número de registros por consulta.</param>
         /// <returns></returns>
@@ -81,15 +78,15 @@ namespace Comercialon.Classes
             String query = "";
             if (id>0)
             {
-                query = "select * from emderecos where Clientes_id = " + id;
+                query = "select * from enderecos where Clientes_id = " + id;
             }
             else if(limit>0)
             {
-                query = "select * from emderecos limit" + limit;
+                query = "select * from enderecos limit" + limit;
             }
             else if (inicio>0)
             {
-                query = "select * from emderecos limit" + inicio + "," + limit;
+                query = "select * from enderecos limit" + inicio + "," + limit;
             }
             var cmd = Banco.abrir();
             cmd.CommandText = query;

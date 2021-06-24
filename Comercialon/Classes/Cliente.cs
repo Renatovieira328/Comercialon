@@ -80,8 +80,8 @@ namespace Comercialon.Classes
                     dr.GetString(2),
                     dr.GetString(3),
                     dr.GetString(4),
-                    dr.GetBoolean(5),
-                    Endereco.ListaEnderecos(dr.GetInt32(0))
+                    dr.GetBoolean(5)
+                 //   Endereco.ListaEnderecos(dr.GetInt32(0))
                     ));
             }
             return lista;
@@ -100,10 +100,10 @@ namespace Comercialon.Classes
                 Email = dr.GetString(3);
                 Telefone = dr.GetString(4);
                 Ativo = dr.GetBoolean(5);
-                Enderecos = Endereco.ListaEnderecos(Id);
-            } 
-         }
-                    
+               // Enderecos = Endereco.ListaEnderecos(Id);
+            }
+        }
+
     }
 }
     

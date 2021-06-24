@@ -8,8 +8,7 @@ namespace Comercialon.Classes
 {
     public class Categoria
     {
-        private readonly int idCategoria;
-        public int IdCategoria { get; set; }
+        public int Id { get; set; }
         public string Nome { get; set; }
         public string Sigla { get; set; }
 
@@ -22,23 +21,25 @@ namespace Comercialon.Classes
             Nome = nome;
             Sigla = sigla;
         }
+        internal void inserie()
+        { }
 
-        public Categoria(int idcatedoria, string nome, string sigla)
+        public Categoria(int id, string nome, string sigla)
         {
-            this.IdCategoria = idCategoria;
+            Id = id;
             Nome = nome;
             Sigla = sigla;
         }
-        public void inserir() 
+        public void Inserie()
         {
-            string query = "insert categoria values(" +
-                idCategoria + "'," +
-                "'" + Nome +"',"+
-                "'"+Sigla + "')";
             var cmd = Banco.abrir();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = query;
+            cmd.CommandText = "insert categoria " +
+                "(nome,sigla)" +
+                "values('" + Id + "','" + Nome + "', '" + Sigla + "''";
             cmd.ExecuteNonQuery();
+            cmd.CommandText = "Select @@identity";
+            Id = Convert.ToInt32(cmd.ExecuteScalar());
 
         }
 
