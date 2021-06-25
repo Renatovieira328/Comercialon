@@ -30,7 +30,7 @@ namespace Comercialon.Classes
             Nome = nome;
             Sigla = sigla;
         }
-        public void Inserie()
+        public void Inserir()
         {
             var cmd = Banco.abrir();
             cmd.CommandType = System.Data.CommandType.Text;

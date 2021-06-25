@@ -30,7 +30,7 @@ namespace Comercialon
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnInserir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,6 +43,7 @@ namespace Comercialon
             this.chkAtivo = new System.Windows.Forms.CheckBox();
             this.mskCpf = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtBairro = new System.Windows.Forms.TextBox();
             this.txtEstado = new System.Windows.Forms.TextBox();
@@ -60,30 +61,30 @@ namespace Comercialon
             this.label7 = new System.Windows.Forms.Label();
             this.txtLogradouro = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBoxTipo = new System.Windows.Forms.ComboBox();
+            this.CBTipo = new System.Windows.Forms.ComboBox();
             this.txtUF = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtSigla = new System.Windows.Forms.TextBox();
-            this.txtCategoria = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtIdmarca = new System.Windows.Forms.TextBox();
+            this.btnAlterar = new System.Windows.Forms.Button();
+            this.btnListar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // btnInserir
             // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(12, 415);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Inserir";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnInserir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInserir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnInserir.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnInserir.Image = global::Comercialon.Properties.Resources.Add;
+            this.btnInserir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnInserir.Location = new System.Drawing.Point(12, 403);
+            this.btnInserir.Name = "btnInserir";
+            this.btnInserir.Size = new System.Drawing.Size(75, 44);
+            this.btnInserir.TabIndex = 1;
+            this.btnInserir.Text = "&Inserir";
+            this.btnInserir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnInserir.UseVisualStyleBackColor = true;
+            this.btnInserir.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -136,8 +137,9 @@ namespace Comercialon
             this.txtID.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtID.Location = new System.Drawing.Point(69, 15);
             this.txtID.Name = "txtID";
+            this.txtID.ReadOnly = true;
             this.txtID.Size = new System.Drawing.Size(42, 20);
-            this.txtID.TabIndex = 2;
+            this.txtID.TabIndex = 1;
             // 
             // txtNome
             // 
@@ -145,7 +147,7 @@ namespace Comercialon
             this.txtNome.Location = new System.Drawing.Point(69, 41);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(200, 20);
-            this.txtNome.TabIndex = 2;
+            this.txtNome.TabIndex = 4;
             // 
             // txtEmail
             // 
@@ -153,7 +155,7 @@ namespace Comercialon
             this.txtEmail.Location = new System.Drawing.Point(69, 93);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(200, 20);
-            this.txtEmail.TabIndex = 2;
+            this.txtEmail.TabIndex = 6;
             this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             // 
             // txtTelefone
@@ -162,7 +164,7 @@ namespace Comercialon
             this.txtTelefone.Location = new System.Drawing.Point(69, 119);
             this.txtTelefone.Name = "txtTelefone";
             this.txtTelefone.Size = new System.Drawing.Size(100, 20);
-            this.txtTelefone.TabIndex = 2;
+            this.txtTelefone.TabIndex = 7;
             // 
             // chkAtivo
             // 
@@ -182,10 +184,11 @@ namespace Comercialon
             this.mskCpf.Mask = "000.000.000.00";
             this.mskCpf.Name = "mskCpf";
             this.mskCpf.Size = new System.Drawing.Size(100, 20);
-            this.mskCpf.TabIndex = 4;
+            this.mskCpf.TabIndex = 5;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.txtNome);
             this.groupBox1.Controls.Add(this.mskCpf);
             this.groupBox1.Controls.Add(this.label1);
@@ -204,11 +207,22 @@ namespace Comercialon
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Identificação";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(117, 15);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(52, 20);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "...";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtBairro);
             this.groupBox2.Controls.Add(this.txtEstado);
             this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.txtUF);
             this.groupBox2.Controls.Add(this.txtCidade);
             this.groupBox2.Controls.Add(this.txtComplemento);
             this.groupBox2.Controls.Add(this.label14);
@@ -222,7 +236,7 @@ namespace Comercialon
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.txtLogradouro);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.comboBoxTipo);
+            this.groupBox2.Controls.Add(this.CBTipo);
             this.groupBox2.Location = new System.Drawing.Point(12, 174);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(280, 223);
@@ -236,7 +250,7 @@ namespace Comercialon
             this.txtBairro.Location = new System.Drawing.Point(85, 132);
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(184, 20);
-            this.txtBairro.TabIndex = 10;
+            this.txtBairro.TabIndex = 5;
             // 
             // txtEstado
             // 
@@ -244,7 +258,7 @@ namespace Comercialon
             this.txtEstado.Location = new System.Drawing.Point(117, 180);
             this.txtEstado.Name = "txtEstado";
             this.txtEstado.Size = new System.Drawing.Size(100, 20);
-            this.txtEstado.TabIndex = 11;
+            this.txtEstado.TabIndex = 7;
             // 
             // label13
             // 
@@ -252,7 +266,7 @@ namespace Comercialon
             this.label13.Location = new System.Drawing.Point(118, 164);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(40, 13);
-            this.label13.TabIndex = 8;
+            this.label13.TabIndex = 7;
             this.label13.Text = "Estado";
             // 
             // txtCidade
@@ -261,7 +275,7 @@ namespace Comercialon
             this.txtCidade.Location = new System.Drawing.Point(14, 180);
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(100, 20);
-            this.txtCidade.TabIndex = 10;
+            this.txtCidade.TabIndex = 6;
             // 
             // txtComplemento
             // 
@@ -269,7 +283,7 @@ namespace Comercialon
             this.txtComplemento.Location = new System.Drawing.Point(11, 132);
             this.txtComplemento.Name = "txtComplemento";
             this.txtComplemento.Size = new System.Drawing.Size(68, 20);
-            this.txtComplemento.TabIndex = 15;
+            this.txtComplemento.TabIndex = 4;
             // 
             // label14
             // 
@@ -277,7 +291,7 @@ namespace Comercialon
             this.label14.Location = new System.Drawing.Point(228, 164);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(21, 13);
-            this.label14.TabIndex = 9;
+            this.label14.TabIndex = 8;
             this.label14.Text = "UF";
             // 
             // label12
@@ -286,7 +300,7 @@ namespace Comercialon
             this.label12.Location = new System.Drawing.Point(11, 164);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(40, 13);
-            this.label12.TabIndex = 7;
+            this.label12.TabIndex = 6;
             this.label12.Text = "Cidade";
             // 
             // label11
@@ -295,7 +309,7 @@ namespace Comercialon
             this.label11.Location = new System.Drawing.Point(85, 115);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(34, 13);
-            this.label11.TabIndex = 8;
+            this.label11.TabIndex = 5;
             this.label11.Text = "Bairro";
             // 
             // label9
@@ -304,7 +318,7 @@ namespace Comercialon
             this.label9.Location = new System.Drawing.Point(205, 65);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(44, 13);
-            this.label9.TabIndex = 14;
+            this.label9.TabIndex = 3;
             this.label9.Text = "Numero";
             // 
             // label10
@@ -313,7 +327,7 @@ namespace Comercialon
             this.label10.Location = new System.Drawing.Point(11, 115);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(71, 13);
-            this.label10.TabIndex = 7;
+            this.label10.TabIndex = 4;
             this.label10.Text = "Complemento";
             // 
             // txtNumero
@@ -322,7 +336,7 @@ namespace Comercialon
             this.txtNumero.Location = new System.Drawing.Point(205, 81);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(64, 20);
-            this.txtNumero.TabIndex = 13;
+            this.txtNumero.TabIndex = 3;
             // 
             // mskCEP
             // 
@@ -331,7 +345,7 @@ namespace Comercialon
             this.mskCEP.Mask = "000000-000";
             this.mskCEP.Name = "mskCEP";
             this.mskCEP.Size = new System.Drawing.Size(100, 20);
-            this.mskCEP.TabIndex = 12;
+            this.mskCEP.TabIndex = 1;
             // 
             // label8
             // 
@@ -339,7 +353,7 @@ namespace Comercialon
             this.label8.Location = new System.Drawing.Point(137, 16);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(28, 13);
-            this.label8.TabIndex = 11;
+            this.label8.TabIndex = 1;
             this.label8.Text = "CEP";
             // 
             // label7
@@ -348,7 +362,7 @@ namespace Comercialon
             this.label7.Location = new System.Drawing.Point(11, 65);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(61, 13);
-            this.label7.TabIndex = 10;
+            this.label7.TabIndex = 2;
             this.label7.Text = "Logradouro";
             // 
             // txtLogradouro
@@ -357,7 +371,7 @@ namespace Comercialon
             this.txtLogradouro.Location = new System.Drawing.Point(11, 81);
             this.txtLogradouro.Name = "txtLogradouro";
             this.txtLogradouro.Size = new System.Drawing.Size(187, 20);
-            this.txtLogradouro.TabIndex = 9;
+            this.txtLogradouro.TabIndex = 2;
             // 
             // label4
             // 
@@ -365,105 +379,73 @@ namespace Comercialon
             this.label4.Location = new System.Drawing.Point(11, 16);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(28, 13);
-            this.label4.TabIndex = 8;
+            this.label4.TabIndex = 0;
             this.label4.Text = "Tipo";
             // 
-            // comboBoxTipo
+            // CBTipo
             // 
-            this.comboBoxTipo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBoxTipo.FormattingEnabled = true;
-            this.comboBoxTipo.Items.AddRange(new object[] {
+            this.CBTipo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CBTipo.FormattingEnabled = true;
+            this.CBTipo.Items.AddRange(new object[] {
             "Residencial",
             "Comercial",
             "Entrega",
             "Cobrança"});
-            this.comboBoxTipo.Location = new System.Drawing.Point(11, 32);
-            this.comboBoxTipo.Name = "comboBoxTipo";
-            this.comboBoxTipo.Size = new System.Drawing.Size(119, 21);
-            this.comboBoxTipo.TabIndex = 7;
+            this.CBTipo.Location = new System.Drawing.Point(11, 32);
+            this.CBTipo.Name = "CBTipo";
+            this.CBTipo.Size = new System.Drawing.Size(119, 21);
+            this.CBTipo.TabIndex = 0;
             // 
             // txtUF
             // 
-            this.txtUF.Location = new System.Drawing.Point(235, 354);
+            this.txtUF.Location = new System.Drawing.Point(223, 180);
             this.txtUF.Name = "txtUF";
             this.txtUF.Size = new System.Drawing.Size(46, 20);
-            this.txtUF.TabIndex = 7;
+            this.txtUF.TabIndex = 8;
             // 
-            // button2
+            // btnAlterar
             // 
-            this.button2.Location = new System.Drawing.Point(424, 132);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 20);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            this.btnAlterar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAlterar.Location = new System.Drawing.Point(103, 415);
+            this.btnAlterar.Name = "btnAlterar";
+            this.btnAlterar.Size = new System.Drawing.Size(75, 23);
+            this.btnAlterar.TabIndex = 2;
+            this.btnAlterar.Text = "&Alterar";
+            this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
-            // label15
+            // btnListar
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(424, 50);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(35, 13);
-            this.label15.TabIndex = 9;
-            this.label15.Text = "Nome";
+            this.btnListar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnListar.Location = new System.Drawing.Point(194, 415);
+            this.btnListar.Name = "btnListar";
+            this.btnListar.Size = new System.Drawing.Size(75, 23);
+            this.btnListar.TabIndex = 3;
+            this.btnListar.Text = "&Listar";
+            this.btnListar.UseVisualStyleBackColor = true;
             // 
-            // label16
+            // btnCancelar
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(424, 91);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(30, 13);
-            this.label16.TabIndex = 10;
-            this.label16.Text = "Sigla";
-            // 
-            // txtSigla
-            // 
-            this.txtSigla.Location = new System.Drawing.Point(424, 108);
-            this.txtSigla.Name = "txtSigla";
-            this.txtSigla.Size = new System.Drawing.Size(100, 20);
-            this.txtSigla.TabIndex = 11;
-            // 
-            // txtCategoria
-            // 
-            this.txtCategoria.Location = new System.Drawing.Point(424, 67);
-            this.txtCategoria.Name = "txtCategoria";
-            this.txtCategoria.Size = new System.Drawing.Size(100, 20);
-            this.txtCategoria.TabIndex = 12;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(424, 9);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(15, 13);
-            this.label17.TabIndex = 13;
-            this.label17.Text = "id";
-            // 
-            // txtIdmarca
-            // 
-            this.txtIdmarca.Location = new System.Drawing.Point(424, 26);
-            this.txtIdmarca.Name = "txtIdmarca";
-            this.txtIdmarca.Size = new System.Drawing.Size(100, 20);
-            this.txtIdmarca.TabIndex = 14;
+            this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancelar.Location = new System.Drawing.Point(285, 415);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 4;
+            this.btnCancelar.Text = "&Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(731, 450);
-            this.Controls.Add(this.txtIdmarca);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.txtCategoria);
-            this.Controls.Add(this.txtSigla);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.txtUF);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnListar);
+            this.Controls.Add(this.btnAlterar);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button1);
-            this.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.Controls.Add(this.btnInserir);
+            this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -472,13 +454,12 @@ namespace Comercialon
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnInserir;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -493,7 +474,7 @@ namespace Comercialon
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBoxTipo;
+        private System.Windows.Forms.ComboBox CBTipo;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtLogradouro;
         private System.Windows.Forms.Label label8;
@@ -511,11 +492,8 @@ namespace Comercialon
         private System.Windows.Forms.TextBox txtCidade;
         private System.Windows.Forms.TextBox txtUF;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txtSigla;
-        private System.Windows.Forms.TextBox txtCategoria;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox txtIdmarca;
+        private System.Windows.Forms.Button btnAlterar;
+        private System.Windows.Forms.Button btnListar;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

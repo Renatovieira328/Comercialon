@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Comercialon.Classes;
 
@@ -33,9 +26,25 @@ namespace Comercialon
                 txtTelefone.Text
             );
             cliente.Inserir();
+            Endereco endereco = new Endereco
+                (txtLogradouro.Text, txtNumero.Text, txtComplemento.Text
+                , mskCEP.Text, txtBairro.Text, txtCidade.Text, CBTipo.Text,
+                txtEstado.Text, txtUF.Text);
+            endereco.inserir(cliente.Id);
+            txtID.Text = cliente.Id.ToString();
+            MessageBox.Show("Cliente " + cliente.Id + " inserido.");
+            LimpaCampos();
+        }
+        private void LimpaCampos()
+        {
+
+            txtID.Clear();
+            txtNome.Clear();
+            mskCpf.Clear();
+            txtEmail.Clear();
+            txtTelefone.Clear();
 
         }
-
         private void txtEmail_TextChanged(object sender, EventArgs e)
         {
             string email = txtEmail.Text;
@@ -43,21 +52,77 @@ namespace Comercialon
             Regex rg = new Regex(@"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$");
             if (rg.IsMatch(email))
             {
-                button1.Enabled = true;
+                btnInserir.Enabled = true;
             }
             else
             {
-                button1.Enabled = false;
+                btnInserir.Enabled = false;
             }
         }
-
-        private void button2_Click_1(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            Categoria categoria = new Categoria(
-                txtCategoria.Text,
-                txtSigla.Text
-                );
-            categoria.Inserie();
-        } 
+            if (button2.Text=="...")
+            {
+            txtID.ReadOnly = false;
+            txtID.Focus();
+            BloquearControles();
+            button2.Text = "buscar";
+            }
+            else
+            {
+                txtID.ReadOnly = true;
+                txtID.Focus();
+                BloquearControles();
+                button2.Text = "buscar";
+                Cliente cliente = new Cliente();
+                cliente.BuscarPorId(int.Parse(txtID.Text));
+                if (cliente.Id>0)
+                {
+                    txtNome.Text = cliente.Nome;
+                    txtEmail.Text = cliente.Email;
+                    txtTelefone.Text = cliente.Telefone;
+                    mskCpf.Text = cliente.Cpf;
+                    mskCpf.Enabled = false;
+                    chkAtivo.Checked = cliente.Ativo;
+                    chkAtivo.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Cliente não cadratasdo");
+                }
+            }
+        }
+        private void DesbloquearControles()
+        {
+            txtNome.Enabled = true;
+            txtEmail.Enabled = true;
+            txtTelefone.Enabled = true;
+            mskCpf.Enabled = true;
+        }
+        private void BloquearControles() 
+        {
+            txtNome.Enabled = false;
+            txtEmail.Enabled = false;
+            txtTelefone.Enabled = false;
+            mskCpf.Enabled = false;
+        }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            Cliente cliente = new Cliente();
+            cliente.Id = int.Parse(txtID.Text);
+            cliente.Nome = txtNome.Text;
+            cliente.Telefone = txtTelefone.Text;
+            cliente.Email = txtEmail.Text;
+            if(cliente.Alterar())
+            {
+                MessageBox.Show("Cliente alterado com sucesso");
+                LimpaCampos();
+            }
+            else
+            {
+                MessageBox.Show("Falha ao alterar o cliente!");
+            }
+        }
     }
 }

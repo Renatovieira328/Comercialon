@@ -14,7 +14,7 @@ namespace Comercialon.Classes
         public static MySqlCommand abrir()
         {
             MySqlCommand cmd = new MySqlCommand();
-            string strConnection = @"server=127.0.0.1;database=comercialondb;user id=root;password=usbw";
+            string strConnection = @"server=127.0.0.1;database=comercialondb;user id=root;password=usbw;port=3306";
             MySqlConnection cn = new MySqlConnection(strConnection);
             try //tratamento de exceção C#
             {
