@@ -30,7 +30,6 @@ namespace Comercialon
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnInserir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -66,25 +65,10 @@ namespace Comercialon
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnListar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnInserir = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnInserir
-            // 
-            this.btnInserir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnInserir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnInserir.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnInserir.Image = global::Comercialon.Properties.Resources.Add;
-            this.btnInserir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnInserir.Location = new System.Drawing.Point(12, 403);
-            this.btnInserir.Name = "btnInserir";
-            this.btnInserir.Size = new System.Drawing.Size(75, 44);
-            this.btnInserir.TabIndex = 1;
-            this.btnInserir.Text = "&Inserir";
-            this.btnInserir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnInserir.UseVisualStyleBackColor = true;
-            this.btnInserir.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -434,11 +418,27 @@ namespace Comercialon
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
+            // btnInserir
+            // 
+            this.btnInserir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInserir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnInserir.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnInserir.Image = global::Comercialon.Properties.Resources.Add;
+            this.btnInserir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnInserir.Location = new System.Drawing.Point(12, 403);
+            this.btnInserir.Name = "btnInserir";
+            this.btnInserir.Size = new System.Drawing.Size(75, 44);
+            this.btnInserir.TabIndex = 1;
+            this.btnInserir.Text = "&Inserir";
+            this.btnInserir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnInserir.UseVisualStyleBackColor = true;
+            this.btnInserir.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(731, 450);
+            this.ClientSize = new System.Drawing.Size(369, 450);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnListar);
             this.Controls.Add(this.btnAlterar);
