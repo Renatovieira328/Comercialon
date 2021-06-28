@@ -47,6 +47,7 @@ namespace Comercialon
             this.txtBairro = new System.Windows.Forms.TextBox();
             this.txtEstado = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.txtUF = new System.Windows.Forms.TextBox();
             this.txtCidade = new System.Windows.Forms.TextBox();
             this.txtComplemento = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -61,13 +62,20 @@ namespace Comercialon
             this.txtLogradouro = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.CBTipo = new System.Windows.Forms.ComboBox();
-            this.txtUF = new System.Windows.Forms.TextBox();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnListar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.dgvClientes = new System.Windows.Forms.DataGridView();
+            this.clnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clnNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clnCpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clnEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clnTelefone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clnAtivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnInserir = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -221,7 +229,7 @@ namespace Comercialon
             this.groupBox2.Controls.Add(this.txtLogradouro);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.CBTipo);
-            this.groupBox2.Location = new System.Drawing.Point(12, 174);
+            this.groupBox2.Location = new System.Drawing.Point(356, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(280, 223);
             this.groupBox2.TabIndex = 6;
@@ -252,6 +260,13 @@ namespace Comercialon
             this.label13.Size = new System.Drawing.Size(40, 13);
             this.label13.TabIndex = 7;
             this.label13.Text = "Estado";
+            // 
+            // txtUF
+            // 
+            this.txtUF.Location = new System.Drawing.Point(223, 180);
+            this.txtUF.Name = "txtUF";
+            this.txtUF.Size = new System.Drawing.Size(46, 20);
+            this.txtUF.TabIndex = 8;
             // 
             // txtCidade
             // 
@@ -380,17 +395,10 @@ namespace Comercialon
             this.CBTipo.Size = new System.Drawing.Size(119, 21);
             this.CBTipo.TabIndex = 0;
             // 
-            // txtUF
-            // 
-            this.txtUF.Location = new System.Drawing.Point(223, 180);
-            this.txtUF.Name = "txtUF";
-            this.txtUF.Size = new System.Drawing.Size(46, 20);
-            this.txtUF.TabIndex = 8;
-            // 
             // btnAlterar
             // 
             this.btnAlterar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAlterar.Location = new System.Drawing.Point(103, 415);
+            this.btnAlterar.Location = new System.Drawing.Point(97, 192);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(75, 23);
             this.btnAlterar.TabIndex = 2;
@@ -401,22 +409,88 @@ namespace Comercialon
             // btnListar
             // 
             this.btnListar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnListar.Location = new System.Drawing.Point(194, 415);
+            this.btnListar.Location = new System.Drawing.Point(187, 192);
             this.btnListar.Name = "btnListar";
             this.btnListar.Size = new System.Drawing.Size(75, 23);
             this.btnListar.TabIndex = 3;
             this.btnListar.Text = "&Listar";
             this.btnListar.UseVisualStyleBackColor = true;
+            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
             // 
             // btnCancelar
             // 
             this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancelar.Location = new System.Drawing.Point(285, 415);
+            this.btnCancelar.Location = new System.Drawing.Point(279, 192);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 4;
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            // 
+            // dgvClientes
+            // 
+            this.dgvClientes.AllowUserToAddRows = false;
+            this.dgvClientes.AllowUserToDeleteRows = false;
+            this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clnId,
+            this.clnNome,
+            this.clnCpf,
+            this.clnEmail,
+            this.clnTelefone,
+            this.clnAtivo});
+            this.dgvClientes.Location = new System.Drawing.Point(6, 272);
+            this.dgvClientes.Name = "dgvClientes";
+            this.dgvClientes.RowHeadersVisible = false;
+            this.dgvClientes.Size = new System.Drawing.Size(550, 150);
+            this.dgvClientes.TabIndex = 7;
+            // 
+            // clnId
+            // 
+            this.clnId.Frozen = true;
+            this.clnId.HeaderText = "ID";
+            this.clnId.Name = "clnId";
+            this.clnId.ReadOnly = true;
+            this.clnId.Width = 40;
+            // 
+            // clnNome
+            // 
+            this.clnNome.Frozen = true;
+            this.clnNome.HeaderText = "Nome";
+            this.clnNome.Name = "clnNome";
+            this.clnNome.ReadOnly = true;
+            this.clnNome.Width = 150;
+            // 
+            // clnCpf
+            // 
+            this.clnCpf.Frozen = true;
+            this.clnCpf.HeaderText = "CPF";
+            this.clnCpf.Name = "clnCpf";
+            this.clnCpf.ReadOnly = true;
+            this.clnCpf.Width = 90;
+            // 
+            // clnEmail
+            // 
+            this.clnEmail.Frozen = true;
+            this.clnEmail.HeaderText = "Email";
+            this.clnEmail.Name = "clnEmail";
+            this.clnEmail.ReadOnly = true;
+            this.clnEmail.Width = 140;
+            // 
+            // clnTelefone
+            // 
+            this.clnTelefone.Frozen = true;
+            this.clnTelefone.HeaderText = "Telefone";
+            this.clnTelefone.Name = "clnTelefone";
+            this.clnTelefone.ReadOnly = true;
+            this.clnTelefone.Width = 90;
+            // 
+            // clnAtivo
+            // 
+            this.clnAtivo.Frozen = true;
+            this.clnAtivo.HeaderText = "Ativo";
+            this.clnAtivo.Name = "clnAtivo";
+            this.clnAtivo.Width = 40;
             // 
             // btnInserir
             // 
@@ -425,7 +499,7 @@ namespace Comercialon
             this.btnInserir.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnInserir.Image = global::Comercialon.Properties.Resources.Add;
             this.btnInserir.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnInserir.Location = new System.Drawing.Point(12, 403);
+            this.btnInserir.Location = new System.Drawing.Point(6, 180);
             this.btnInserir.Name = "btnInserir";
             this.btnInserir.Size = new System.Drawing.Size(75, 44);
             this.btnInserir.TabIndex = 1;
@@ -438,7 +512,8 @@ namespace Comercialon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(369, 450);
+            this.ClientSize = new System.Drawing.Size(702, 450);
+            this.Controls.Add(this.dgvClientes);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnListar);
             this.Controls.Add(this.btnAlterar);
@@ -453,6 +528,7 @@ namespace Comercialon
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -495,5 +571,12 @@ namespace Comercialon
         private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.Button btnListar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.DataGridView dgvClientes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clnId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clnNome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clnCpf;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clnEmail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clnTelefone;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn clnAtivo;
     }
 }

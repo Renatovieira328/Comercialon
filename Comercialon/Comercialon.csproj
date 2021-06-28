@@ -125,6 +125,12 @@
     <Compile Include="Formularios\FrmProdutos.Designer.cs">
       <DependentUpon>FrmProdutos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\FrmProdutosLista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmProdutosLista.Designer.cs">
+      <DependentUpon>FrmProdutosLista.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\FrmUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmProdutos.resx">
       <DependentUpon>FrmProdutos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmProdutosLista.resx">
+      <DependentUpon>FrmProdutosLista.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

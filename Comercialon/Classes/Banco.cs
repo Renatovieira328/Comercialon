@@ -10,7 +10,6 @@ namespace Comercialon.Classes
         /// <summary>
         /// Abre uma conexão para um banco de dados MySql
         /// </summary>
-        /// <returns>Objeto de comandos Mysql</returns>
         public static MySqlCommand abrir()
         {
             MySqlCommand cmd = new MySqlCommand();

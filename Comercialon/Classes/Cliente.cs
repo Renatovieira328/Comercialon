@@ -116,7 +116,7 @@ namespace Comercialon.Classes
                 Email = dr.GetString(3);
                 Telefone = dr.GetString(4);
                 Ativo = dr.GetBoolean(5);
-               // Enderecos = Endereco.ListaEnderecos(Id);
+                //Enderecos = Endereco.ListaEnderecos(Id);
             }
         }
 

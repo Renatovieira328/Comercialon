@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Comercialon.Classes;
 
 namespace Comercialon.Formularios
 {
@@ -17,9 +11,38 @@ namespace Comercialon.Formularios
             InitializeComponent();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void buttonAdd_Click(object sender, EventArgs e)
         {
+            Categoria categoria = new Categoria(
+                txtCatName.Text,
+                txtCatSigla.Text
+                );
+            categoria.inserir();
 
+            MessageBox.Show("Categoria " + categoria.Nome + " adicionada!");
+        }
+        private void LimpaCampos()
+        {
+            txtCatName.Clear();
+            txtCatSigla.Clear();
+        }
+
+        private void BTAlterar_Click(object sender, EventArgs e)
+        {
+            Categoria categoria = new Categoria();
+            //categoria.Id = int.Parse(txtId.Text);
+            categoria.Nome = txtCatName.Text;
+            categoria.Sigla = txtCatSigla.Text;
+
+            if (categoria.Alterar())
+            {
+                MessageBox.Show("Categoria alterado com sucesso");
+                LimpaCampos();
+            }
+            else
+            {
+                MessageBox.Show("Falha ao alterar o cliente!");
+            }
         }
     }
 }
