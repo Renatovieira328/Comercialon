@@ -58,13 +58,13 @@ namespace Comercialon.Classes
                 "(nome,cpf,email,telefone,ativo)" +
                 "values('"+Nome+"', '"+Cpf+"', '"+Email+"', '"+Telefone+"', default); ";
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "Select @@identity";
+            cmd.CommandText = "select @@identity";
             Id = Convert.ToInt32(cmd.ExecuteScalar());
 
         }
         public bool Alterar()
         {
-            string ativo = Ativo ? "1" : "0";
+            //string ativo = Ativo ? "1" : "0";
             var cmd = Banco.abrir();
             cmd.CommandText = "update cliente set" +
                 " nome = '" + Nome + "', email = '" + Email + "'," +
@@ -96,15 +96,15 @@ namespace Comercialon.Classes
                     dr.GetString(2),
                     dr.GetString(3),
                     dr.GetString(4),
-                    dr.GetBoolean(5)
-                    //Endereco.ListaEnderecos(dr.GetInt32(0))
+                    dr.GetBoolean(5),
+                    Endereco.ListaEnderecos(dr.GetInt32(0))
                     ));
             }
             return lista;
         }
-        public void BuscarPorId(int Id)
+        public void BuscarPorId(int id)
         {
-            string query = "select * from clientes where id = " + Id;
+            string query = "select * from clientes where id = " + id;
             var cmd = Banco.abrir();
             cmd.CommandText = query;
             var dr = cmd.ExecuteReader();
@@ -116,7 +116,7 @@ namespace Comercialon.Classes
                 Email = dr.GetString(3);
                 Telefone = dr.GetString(4);
                 Ativo = dr.GetBoolean(5);
-                //Enderecos = Endereco.ListaEnderecos(Id);
+                Enderecos = Endereco.ListaEnderecos(id);
             }
         }
 

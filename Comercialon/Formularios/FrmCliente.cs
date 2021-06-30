@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Comercialon.Classes;
@@ -141,6 +142,34 @@ namespace Comercialon
                 dgvClientes.Rows[dgvClientes.Rows.Count - 1].Cells[5].Value = item.Ativo;
 
             }
+        }
+
+        private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvEndereco.Rows.Clear();
+            int idCli = Convert.ToInt32(dgvClientes.Rows[e.RowIndex].Cells[0].Value);
+            var listaEnd = Endereco.ListaEnderecos(idCli);
+            if (listaEnd.Count>0)
+            {
+                foreach (var item in listaEnd)
+                {
+                    dgvEndereco.Rows.Add();
+                    dgvEndereco.Rows[dgvEndereco.Rows.Count - 1].Cells[0].Value = item.Tipo;
+                    dgvEndereco.Rows[dgvEndereco.Rows.Count - 1].Cells[1].Value = item.Cep;
+                    StringBuilder endereco = new StringBuilder();
+                    endereco.Append(", " + item.Numero);
+                    endereco.Append(" - " + item.Bairro);
+                    dgvEndereco.Rows[dgvEndereco.Rows.Count - 1].Cells[2].Value = endereco;
+
+                }
+            }
+            else
+            {
+                dgvEndereco.Rows.Add();
+                string mensagem = "Não há endereços cadastrados";
+                dgvEndereco.Rows[dgvEndereco.Rows.Count - 1].Cells[2].Value = mensagem;
+            }
+           
         }
     }
 }

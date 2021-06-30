@@ -1,12 +1,16 @@
-﻿using System;
+﻿  
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Comercialon.Classes
 {
     public class Endereco
     {
-        private readonly int idCiente;
-        public int IdCliente { get { return idCiente; } }
+        private readonly int idCliente;
+        public int IdCliente { get { return idCliente; } }
         public string Logradouro { get; set; }
         public string Numero { get; set; }
         public string Complemento { get; set; }
@@ -22,7 +26,7 @@ namespace Comercialon.Classes
 
         public Endereco(int idCiente, string logradouro, string numero, string complemento, string cep, string bairro, string cidade, string estado, string siglaEstado, string tipo)
         {
-            this.idCiente = idCiente;
+            this.idCliente = idCiente;
             Logradouro = logradouro;
             Numero = numero;
             Complemento = complemento;
@@ -79,10 +83,6 @@ namespace Comercialon.Classes
             if (id>0)
             {
                 query = "select * from enderecos where Clientes_id = " + id;
-            }
-            else if(limit>0)
-            {
-                query = "select * from enderecos limit" + limit;
             }
             else if (inicio>0)
             {
