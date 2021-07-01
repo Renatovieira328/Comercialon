@@ -17,14 +17,13 @@ namespace Comercialon.Classes
         public string Cep { get; set; }
         public string Bairro { get; set; }
         public string Cidade { get; set; }
-        public string Estado { get; set; }
-        public string SiglaEstado { get; set; }
+        public string UF { get; set; }
         public string Tipo { get; set; }
         public Endereco()
         {
         }
 
-        public Endereco(int idCiente, string logradouro, string numero, string complemento, string cep, string bairro, string cidade, string estado, string siglaEstado, string tipo)
+        public Endereco(int idCiente, string logradouro, string numero, string complemento, string cep, string bairro, string cidade, string estado, string uf, string tipo)
         {
             this.idCliente = idCiente;
             Logradouro = logradouro;
@@ -33,12 +32,11 @@ namespace Comercialon.Classes
             Cep = cep;
             Bairro = bairro;
             Cidade = cidade;
-            Estado = estado;
-            SiglaEstado = siglaEstado;
+            UF = uf;
             Tipo = tipo;
         }
 
-        public Endereco(string logradouro, string numero, string complemento, string cep, string bairro, string cidade,string tipo, string estado=null,string siglaEstado = null )
+        public Endereco(string logradouro, string numero, string complemento, string cep, string bairro, string cidade,string tipo, string estado=null,string uf = null )
         {
             Logradouro = logradouro;
             Numero = numero;
@@ -47,22 +45,20 @@ namespace Comercialon.Classes
             Bairro = bairro;
             Tipo = tipo;
             Cidade = cidade;
-            Estado = estado;
-            SiglaEstado = siglaEstado;
+            UF = uf;
         }
         public void inserir(int idClient)
         {
             string query = "insert enderecos values(" +
-                +idClient+"," +
-                "'"+Cep+"," +
-                "'"+Logradouro+"'," +
-                "'"+Numero+"'," +
-                "'"+Complemento+"'," +
-                "'"+Bairro+"'," +
-                "'"+Cidade+"'," +
-                "'"+Estado+"'," +
-                "'"+SiglaEstado+"'," +
-                "'"+Tipo+"')";
+                +idClient + "," +
+                "'" + Cep + "," +
+                "'" + Logradouro + "'," +
+                "'" + Numero + "'," +
+                "'" + Complemento + "'," +
+                "'" + Bairro + "'," +
+                "'" + Cidade + "'," +
+                "'" + UF + "'," +
+                "'" + Tipo + "')";
             var cmd = Banco.abrir();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = query;

@@ -21,7 +21,7 @@ namespace Comercialon.Classes
             Nome = nome;
             Sigla = sigla;
         }
-        internal void inserir()
+        internal void Inserir()
         { }
 
         public Categoria(int id, string nome, string sigla)
@@ -30,7 +30,7 @@ namespace Comercialon.Classes
             Nome = nome;
             Sigla = sigla;
         }
-        public void Inserir()
+        public void Inserie()
         {
             var cmd = Banco.abrir();
             cmd.CommandType = System.Data.CommandType.Text;
@@ -48,7 +48,15 @@ namespace Comercialon.Classes
             cmd.CommandText = "update categoria set" +
                 " nome = '" + Nome + "', sigla = '" + Sigla + "'," +
                 " where id = " + Id;
-            cmd.ExecuteNonQuery();
+            int ret = cmd.ExecuteNonQuery();
+            if (ret == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public static List<Categoria> ListarTodos()
         {

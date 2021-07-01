@@ -13,34 +13,47 @@ namespace Comercialon.Classes
         public string Email { get; set; }
         public string Senha { get; set; }
         public string Nivel { get; set; }
-        public string Situacao { get; set; }
+        public string Cpf { get; set; }        
+        public bool Ativo { get; set; }
+
 
         public Usuario()
         {
         }
 
-        public Usuario(int id, string nome, string email, string senha, string nivel, string situacao)
+        public Usuario(int id, string nome, string email, string senha, string nivel,string cpf, bool ativo = true )
         {
             Id = id;
             Nome = nome;
             Email = email;
             Senha = senha;
             Nivel = nivel;
-            Situacao = situacao;
+            Ativo = ativo;
+            Cpf = cpf;
         }
+        internal void Inserir()
+        { }
 
-        public Usuario(string nome, string email, string senha, string nivel, string situacao)
+        public Usuario(string nome, string email, string senha, string nivel, string cpf, bool ativo = true)
         {
             Nome = nome;
             Email = email;
             Senha = senha;
             Nivel = nivel;
-            Situacao = situacao;
+            Ativo = ativo;
+            Cpf = cpf;
         }
 
-        public double Inserir() 
+        public double Cadrastrar() 
         {
-            return Id;
+            var cmd = Banco.abrir();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "insert usuarios " +
+                "(nome,email,senha,nivel,ativo,cpf)" +
+                "values('" + Nome + "', '" + Email + "', '" + Senha + "', '" + Nivel + "'" + Ativo + "','" + Cpf + "')";
+            cmd.ExecuteNonQuery();
+            cmd.CommandText = "select @@identity";
+            cmd.ExecuteScalar();
         }
         public static List<Usuario> ListarTodos()
         {
@@ -49,12 +62,61 @@ namespace Comercialon.Classes
         }
         public bool Alterar() 
         {
-            return true;
-
+            var cmd = Banco.abrir();
+            cmd.CommandText = "update usuario set" +
+                " nome = '" + Nome + "', email = '" + Email + "'," +
+                " senha = '" + Senha + "'," +
+                " nivel ='" + Nivel + "'" +
+                " ativo ='" + Ativo + "'" +
+                " cpf='" + Cpf + "'" +
+                " where id = " + Id;
+            int ret = cmd.ExecuteNonQuery();
+            if (ret == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static List<Usuario> ListarUsuarios()
+        {
+            List<Usuario> lista = new List<Usuario>();
+            string query = "select * from usuarios";
+            var cmd = Banco.abrir();
+            cmd.CommandText = query;
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                lista.Add(new Usuario(
+                    dr.GetInt32(0),
+                    dr.GetString(1),
+                    dr.GetString(2),
+                    dr.GetString(3),
+                    dr.GetString(4),
+                    dr.GetString(5),
+                    dr.GetBoolean(6)
+                    ));
+            }
+            return lista;
         }
         public void BuscarPorId(int id)
         {
-
+            string query = "select * from usuarios where id" + Id;
+            var cmd = Banco.abrir();
+            cmd.CommandText = query;
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Id = dr.GetInt32(0);
+                Nome = dr.GetString(1);
+                Email = dr.GetString(2);
+                Senha = dr.GetString(3);
+                Nivel = dr.GetString(4);
+                Cpf = dr.GetString(5);
+                Ativo = dr.GetBoolean(6);
+            }
         }
 
     }

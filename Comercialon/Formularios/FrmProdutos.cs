@@ -17,7 +17,7 @@ namespace Comercialon.Formularios
                 txtCatName.Text,
                 txtCatSigla.Text
                 );
-            categoria.inserir();
+            categoria.Inserir();
 
             MessageBox.Show("Categoria " + categoria.Nome + " adicionada!");
         }
