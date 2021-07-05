@@ -1,21 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using MySql.Data.MySqlClient;
 
+
 namespace Comercialon.Classes
-{   
+{
     public static class Banco
     {
-        /// <summary>
-        /// Abre uma conexão para um banco de dados MySql
-        /// </summary>
-        public static MySqlCommand abrir()
+        // Abre uma conexão para um banco de dados MySql
+        public static MySqlCommand Abrir()
         {
             MySqlCommand cmd = new MySqlCommand();
-            string strConnection = @"server=127.0.0.1;database=comercialondb;user id=root;password=usbw;port=3306";
-            MySqlConnection cn = new MySqlConnection(strConnection);
-            try //tratamento de exceção C#
+            string strConn = @"server=127.0.0.1;database=comercialondb;user id=root;password=usbw;port=3306";
+            MySqlConnection cn = new MySqlConnection(strConn);
+            try // tratamento de exceção com C#
             {
                 if (cn.State != ConnectionState.Open)
                 {
@@ -25,8 +23,10 @@ namespace Comercialon.Classes
             }
             catch (Exception)
             {
+
                 throw;
             }
+
             return cmd;
         }
     }

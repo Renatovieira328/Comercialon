@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 
 
 namespace Comercialon.Classes
@@ -52,25 +53,26 @@ namespace Comercialon.Classes
             //inserir utilizando expressões mysql
 
             //inserir utilizando procedures
-            var cmd = Banco.abrir();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert clientes " +
-                "(nome,cpf,email,telefone,ativo)" +
-                "values('"+Nome+"', '"+Cpf+"', '"+Email+"', '"+Telefone+"', default); ";
+            var cmd = Banco.Abrir();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "inserir_clientes";
+            cmd.Parameters.AddWithValue("_id", 0).Direction = ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("_nome", Nome).Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("_cpf", Cpf).Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("_email", Email).Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("_telefone", Telefone).Direction = ParameterDirection.Input;
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "select @@identity";
-            Id = Convert.ToInt32(cmd.ExecuteScalar());
-
+            Id = Convert.ToInt32(cmd.Parameters["_id"].Value);
         }
         public bool Alterar()
         {
-            //string ativo = Ativo ? "1" : "0";
-            var cmd = Banco.abrir();
-            cmd.CommandText = "update cliente set" +
-                " nome = '" + Nome + "', email = '" + Email + "'," +
-                " telefone = '" + Telefone + "'," +
-                " ativo ='" + Ativo + "'" +
-                " where id = " + Id;
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "alterar_clientes";
+            cmd.Parameters.AddWithValue("_id", Id).Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("_nome", Nome).Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("_email", Email).Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("_telefone", Telefone).Direction = ParameterDirection.Input;
             int ret =  cmd.ExecuteNonQuery();
             if (ret==1)
             {
@@ -85,7 +87,7 @@ namespace Comercialon.Classes
         {
             List<Cliente> lista = new List<Cliente>();
             string query = "select * from clientes";
-            var cmd = Banco.abrir();
+            var cmd = Banco.Abrir();
             cmd.CommandText = query;
             var dr = cmd.ExecuteReader();
             while (dr.Read())
@@ -105,7 +107,7 @@ namespace Comercialon.Classes
         public void BuscarPorId(int id)
         {
             string query = "select * from clientes where id = " + id;
-            var cmd = Banco.abrir();
+            var cmd = Banco.Abrir();
             cmd.CommandText = query;
             var dr = cmd.ExecuteReader();
             while (dr.Read())

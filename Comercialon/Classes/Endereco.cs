@@ -1,9 +1,9 @@
-﻿  
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace Comercialon.Classes
 {
@@ -12,79 +12,76 @@ namespace Comercialon.Classes
         private readonly int idCliente;
         public int IdCliente { get { return idCliente; } }
         public string Logradouro { get; set; }
-        public string Numero { get; set; }
+        public string Numero { set; get; }
         public string Complemento { get; set; }
         public string Cep { get; set; }
         public string Bairro { get; set; }
         public string Cidade { get; set; }
-        public string UF { get; set; }
+        public string Uf { get; set; }
         public string Tipo { get; set; }
         public Endereco()
         {
         }
 
-        public Endereco(int idCiente, string logradouro, string numero, string complemento, string cep, string bairro, string cidade, string estado, string uf, string tipo)
+        public Endereco(int idCliente, string logradouro, string numero, string complemento, string cep, string bairro, string cidade, string uf, string tipo)
         {
-            this.idCliente = idCiente;
+            this.idCliente = idCliente;
             Logradouro = logradouro;
             Numero = numero;
             Complemento = complemento;
             Cep = cep;
             Bairro = bairro;
             Cidade = cidade;
-            UF = uf;
+            Uf = uf;
             Tipo = tipo;
         }
 
-        public Endereco(string logradouro, string numero, string complemento, string cep, string bairro, string cidade,string tipo, string estado=null,string uf = null )
+        public Endereco(string logradouro, string numero, string complemento, string cep, string bairro, string cidade, string tipo, string uf = null)
         {
             Logradouro = logradouro;
             Numero = numero;
             Complemento = complemento;
             Cep = cep;
             Bairro = bairro;
-            Tipo = tipo;
             Cidade = cidade;
-            UF = uf;
+            Tipo = tipo;
+            Uf = uf;
         }
-        public void inserir(int idClient)
+        public void Inserir(int idCliente)
         {
-            string query = "insert enderecos values(" +
-                +idClient + "," +
-                "'" + Cep + "," +
-                "'" + Logradouro + "'," +
-                "'" + Numero + "'," +
-                "'" + Complemento + "'," +
-                "'" + Bairro + "'," +
-                "'" + Cidade + "'," +
-                "'" + UF + "'," +
-                "'" + Tipo + "')";
-            var cmd = Banco.abrir();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = query;
+            var cmd = Banco.Abrir();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "inserir_enderecos";
+            cmd.Parameters.AddWithValue("_cep", Cep);
+            cmd.Parameters.AddWithValue("_logradouro", Logradouro);
+            cmd.Parameters.AddWithValue("_numero", Numero);
+            cmd.Parameters.AddWithValue("_complemento", Complemento);
+            cmd.Parameters.AddWithValue("_bairro", Bairro);
+            cmd.Parameters.AddWithValue("_cidade", Cidade);
+            cmd.Parameters.AddWithValue("_uf", Uf);
+            cmd.Parameters.AddWithValue("_tipo", Tipo);
             cmd.ExecuteNonQuery();
         }
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id">id do cliente na tabela endereçou use 0 se quiser listar todos com limite de resultados</param>
+        /// <param name="id">id do cliente na tabela endereço. Use 0 se quiser listar todos com limite de resultados</param>
         /// <param name="incial">Valor incial da base de consulta. Zero é o valor padrão</param>
         /// <param name="limit">Número de registros por consulta.</param>
         /// <returns></returns>
-        public List<Endereco> ListaEnderecos(int id = 0, int inicio = 0, int limit = 0) 
+        public static List<Endereco> ListaEnderecos(int id = 0, int inicial = 0, int limit = 0)
         {
             List<Endereco> lista = new List<Endereco>();
-            //codigo buscar endereços
-            String query = "";
-            if (id>0)
+            string query = "";
+            if (id > 0)
             {
                 query = "select * from enderecos where Clientes_id = " + id;
             }
-            else if (inicio>0)
+            else if (limit >= 0 && inicial >= 0)
             {
-                query = "select * from enderecos limit" + inicio + "," + limit;
+                query = "select * from enderecos limit " + inicial + "," + limit;
             }
-            var cmd = Banco.abrir();
+            var cmd = Banco.Abrir();
             cmd.CommandText = query;
             var dr = cmd.ExecuteReader();
             while (dr.Read())
@@ -98,8 +95,7 @@ namespace Comercialon.Classes
                     dr.GetString(5),
                     dr.GetString(6),
                     dr.GetString(7),
-                    dr.GetString(8),
-                    dr.GetString(9)
+                    dr.GetString(8)
                     ));
             }
             return lista;
