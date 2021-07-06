@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Comercialon.Classes;
+using System;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using Comercialon.Classes;
 
 namespace Comercialon
 {
@@ -13,11 +13,10 @@ namespace Comercialon
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-        }
+
         private void button1_Click(object sender, EventArgs e)
-        {   //remove pontos do bloco
+        {
+            //remove pontos do bloco
             mskCpf.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
 
             Cliente cliente = new Cliente(
@@ -28,10 +27,17 @@ namespace Comercialon
             );
             cliente.Inserir();
             Endereco endereco = new Endereco
-                (txtLogradouro.Text, txtNumero.Text, txtComplemento.Text
-                , mskCEP.Text, txtBairro.Text, txtCidade.Text, CBTipo.Text,
-                txtEstado.Text, txtUF.Text);
-            endereco.inserir(cliente.Id);
+                (
+                 txtLogradouro.Text,
+                 txtNumero.Text,
+                 txtComplemento.Text,
+                 txtCep.Text,
+                 txtBairro.Text,
+                 txtCidade.Text,
+                 cmbTipo.Text,
+                 txtUf.Text
+                );
+            endereco.Inserir(cliente.Id);
             txtID.Text = cliente.Id.ToString();
             MessageBox.Show("Cliente " + cliente.Id + " inserido.");
             LimpaCampos();
@@ -58,26 +64,39 @@ namespace Comercialon
             else
             {
                 btnInserir.Enabled = false;
+                txtEmail.Focus();
+            }
+        }
+
+        private void mskCEP_MaskTextChanged(object sender, EventArgs e)
+        {
+            if (txtCep.Text.Length == 8)
+            {
+                var cep = Cep.Obter(txtCep.Text);
+                txtBairro.Text = cep.Bairro;
+                txtCidade.Text = cep.Localidade;
+                txtLogradouro.Text = cep.Logradouro;
+                txtUf.Text = cep.Uf;
             }
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            if (button2.Text=="...")
+            if (button1.Text == "...")
             {
-            txtID.ReadOnly = false;
-            txtID.Focus();
-            BloquearControles();
-            button2.Text = "buscar";
+                txtID.ReadOnly = false;
+                txtID.Focus();
+                BloquearControles();
+                button1.Text = "buscar";
             }
             else
             {
                 txtID.ReadOnly = true;
                 txtID.Focus();
                 BloquearControles();
-                button2.Text = "buscar";
+                button1.Text = "buscar";
                 Cliente cliente = new Cliente();
                 cliente.BuscarPorId(int.Parse(txtID.Text));
-                if (cliente.Id>0)
+                if (cliente.Id > 0)
                 {
                     txtNome.Text = cliente.Nome;
                     txtEmail.Text = cliente.Email;
@@ -100,7 +119,7 @@ namespace Comercialon
             txtTelefone.Enabled = true;
             mskCpf.Enabled = true;
         }
-        private void BloquearControles() 
+        private void BloquearControles()
         {
             txtNome.Enabled = false;
             txtEmail.Enabled = false;
@@ -115,7 +134,8 @@ namespace Comercialon
             cliente.Nome = txtNome.Text;
             cliente.Telefone = txtTelefone.Text;
             cliente.Email = txtEmail.Text;
-            if(cliente.Alterar())
+            cliente.Ativo = chkAtivo.Checked;
+            if (cliente.Alterar())
             {
                 MessageBox.Show("Cliente alterado com sucesso");
                 LimpaCampos();
@@ -149,7 +169,7 @@ namespace Comercialon
             dgvEndereco.Rows.Clear();
             int idCli = Convert.ToInt32(dgvClientes.Rows[e.RowIndex].Cells[0].Value);
             var listaEnd = Endereco.ListaEnderecos(idCli);
-            if (listaEnd.Count>0)
+            if (listaEnd.Count > 0)
             {
                 foreach (var item in listaEnd)
                 {
@@ -169,7 +189,26 @@ namespace Comercialon
                 string mensagem = "Não há endereços cadastrados";
                 dgvEndereco.Rows[dgvEndereco.Rows.Count - 1].Cells[2].Value = mensagem;
             }
-           
+
+        }
+
+        private void btnNovoEndereco_Click(object sender, EventArgs e)
+        {
+            Endereco endereco = new Endereco
+              (txtLogradouro.Text,
+                txtNumero.Text,
+                txtComplemento.Text,
+                txtCep.Text,
+                txtBairro.Text,
+                txtCidade.Text,
+                cmbTipo.Text,
+                txtUf.Text);
+            int idCli = Convert.ToInt32(dgvClientes.Rows[dgvClientes.CurrentRow.Index].Cells[0].Value);
+            endereco.Inserir(idCli);
+            txtID.Text = idCli.ToString();
+            MessageBox.Show("Novo endereço adicionado para " + idCli + " inserido.");
+            LimpaCampos();
+            btnListar_Click(sender, e);
         }
     }
 }

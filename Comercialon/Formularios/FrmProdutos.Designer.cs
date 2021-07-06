@@ -40,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.BTAlterar = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -53,7 +54,7 @@
             this.groupBox1.Location = new System.Drawing.Point(146, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(118, 117);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Marca";
             // 
@@ -98,7 +99,7 @@
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(117, 117);
-            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Categorias";
             // 
@@ -141,19 +142,20 @@
             this.buttonAdd.Location = new System.Drawing.Point(12, 135);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(106, 49);
-            this.buttonAdd.TabIndex = 0;
+            this.buttonAdd.TabIndex = 10;
             this.buttonAdd.Text = "&Adicionar";
             this.buttonAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonAdd.UseVisualStyleBackColor = false;
+            this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // BTAlterar
             // 
+            this.BTAlterar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BTAlterar.Image = global::Comercialon.Properties.Resources.Edit;
-            this.BTAlterar.Location = new System.Drawing.Point(124, 135);
+            this.BTAlterar.Location = new System.Drawing.Point(146, 135);
             this.BTAlterar.Name = "BTAlterar";
-            this.BTAlterar.Size = new System.Drawing.Size(80, 49);
-            this.BTAlterar.TabIndex = 2;
+            this.BTAlterar.Size = new System.Drawing.Size(106, 49);
+            this.BTAlterar.TabIndex = 11;
             this.BTAlterar.Text = "Alterar";
             this.BTAlterar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BTAlterar.UseVisualStyleBackColor = true;
@@ -163,13 +165,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 201);
+            this.ClientSize = new System.Drawing.Size(284, 201);
             this.Controls.Add(this.BTAlterar);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmProdutos";
-            this.Text = "FrmProdutos";
+            this.Text = "10";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -192,5 +194,6 @@
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button BTAlterar;
         private System.Windows.Forms.Label Nome;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }

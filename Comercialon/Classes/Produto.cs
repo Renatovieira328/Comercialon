@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Comercialon.Classes
 {
@@ -10,47 +6,64 @@ namespace Comercialon.Classes
     {
         public int Id { get; set; }
         public string Descricao { get; set; }
-        public string Preco { get; set; }
-        public string Desconto { get; set; }
-        public string Descontinuado { get; set; }
-        //
+        public double ValorUnitario { get; set; }
+        public string UnidadeVenda { get; set; }
+        public string CodBar { get; set; }
+        public double Desconto { get; set; }
+        public bool Descontinuado { get; set; }
+        public Marca Marca { get; set; }
+        public Categoria Categoria { get; set; }
         public Produto()
         {
         }
 
-        public Produto(int id, string descricao, string preco, string desconto, string descontinuado)
+        public Produto(string descricao, double valorUnitario, string unidadeVenda, string codBar, double desconto, bool descontinuado, Marca marca, Categoria categoria)
+        {
+            Descricao = descricao;
+            ValorUnitario = valorUnitario;
+            UnidadeVenda = unidadeVenda;
+            CodBar = codBar;
+            Desconto = desconto;
+            Descontinuado = descontinuado;
+            Marca = marca;
+            Categoria = categoria;
+        }
+
+        public Produto(int id, string descricao, double valorUnitario, string unidadeVenda, string codBar, double desconto, bool descontinuado, Marca marca, Categoria categoria)
         {
             Id = id;
             Descricao = descricao;
-            Preco = preco;
+            ValorUnitario = valorUnitario;
+            UnidadeVenda = unidadeVenda;
+            CodBar = codBar;
             Desconto = desconto;
             Descontinuado = descontinuado;
+            Marca = marca;
+            Categoria = categoria;
         }
+        public void Inserir()
+        {
 
-        public Produto(string descricao, string preco, string desconto, string descontinuado)
-        {
-            Descricao = descricao;
-            Preco = preco;
-            Desconto = desconto;
-            Descontinuado = descontinuado;
         }
-        //
-        public double Inserir() 
+        public static List<Produto> ObterLista()
         {
-            return Id;
-        }
-        public static List<Produto> ListarTodos()
-        {
-            List<Produto> Lista = new List<Produto>();
-            return Lista;
-        }
-        public bool Alterar()
-        {
-            return false;
+            List<Produto> lista = new List<Produto>();
+
+            return lista;
         }
         public void BuscarPorId(int id)
         {
 
+        }
+        public void BuscarPorCodbar(string codBar)
+        {
+
+        }
+
+        public bool Alterar()
+        {
+
+            return true;
         }
     }
 }

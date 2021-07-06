@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 
 namespace Comercialon.Classes
 {
@@ -13,7 +11,7 @@ namespace Comercialon.Classes
         public string Email { get; set; }
         public string Senha { get; set; }
         public string Nivel { get; set; }
-        public string Cpf { get; set; }        
+        public string Cpf { get; set; }
         public bool Ativo { get; set; }
 
 
@@ -21,7 +19,7 @@ namespace Comercialon.Classes
         {
         }
 
-        public Usuario(int id, string nome, string email, string senha, string nivel,string cpf, bool ativo = true )
+        public Usuario(int id, string nome, string email, string senha, string nivel, string cpf, bool ativo = true)
         {
             Id = id;
             Nome = nome;
@@ -31,8 +29,6 @@ namespace Comercialon.Classes
             Ativo = ativo;
             Cpf = cpf;
         }
-        internal void Inserir()
-        { }
 
         public Usuario(string nome, string email, string senha, string nivel, string cpf, bool ativo = true)
         {
@@ -44,32 +40,29 @@ namespace Comercialon.Classes
             Cpf = cpf;
         }
 
-        public double Cadrastrar() 
+        public void Inserir_Usuario()
         {
-            var cmd = Banco.abrir();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert usuarios " +
-                "(nome,email,senha,nivel,ativo,cpf)" +
-                "values('" + Nome + "', '" + Email + "', '" + Senha + "', '" + Nivel + "'" + Ativo + "','" + Cpf + "')";
+            var cmd = Banco.Abrir();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "inserir_usuarios";
+            cmd.Parameters.AddWithValue("_id", 0);
+            cmd.Parameters.AddWithValue("_nome", Nome);
+            cmd.Parameters.AddWithValue("_email", Email);
+            cmd.Parameters.AddWithValue("_senha", Senha);
+            cmd.Parameters.AddWithValue("_nivel", Nivel);
+            cmd.Parameters.AddWithValue("_cpf", Cpf);
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "select @@identity";
-            cmd.ExecuteScalar();
+            Id = Convert.ToInt32(cmd.Parameters["_id"].Value);
         }
-        public static List<Usuario> ListarTodos()
+        public bool Alterar()
         {
-            List<Usuario> lista = new List<Usuario>();
-            return lista;
-        }
-        public bool Alterar() 
-        {
-            var cmd = Banco.abrir();
-            cmd.CommandText = "update usuario set" +
-                " nome = '" + Nome + "', email = '" + Email + "'," +
-                " senha = '" + Senha + "'," +
-                " nivel ='" + Nivel + "'" +
-                " ativo ='" + Ativo + "'" +
-                " cpf='" + Cpf + "'" +
-                " where id = " + Id;
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "alterar_usuarios";
+            cmd.Parameters.AddWithValue("_id", Id);
+            cmd.Parameters.AddWithValue("_nome", Nome);
+            cmd.Parameters.AddWithValue("_email", Email);
+            cmd.Parameters.AddWithValue("_nivel", Nivel);
             int ret = cmd.ExecuteNonQuery();
             if (ret == 1)
             {
@@ -80,11 +73,11 @@ namespace Comercialon.Classes
                 return false;
             }
         }
-        public static List<Usuario> ListarUsuarios()
+        public static List<Usuario> ListarTodos()
         {
             List<Usuario> lista = new List<Usuario>();
-            string query = "select * from usuarios";
-            var cmd = Banco.abrir();
+            string query = "select * from clientes";
+            var cmd = Banco.Abrir();
             cmd.CommandText = query;
             var dr = cmd.ExecuteReader();
             while (dr.Read())
@@ -103,8 +96,8 @@ namespace Comercialon.Classes
         }
         public void BuscarPorId(int id)
         {
-            string query = "select * from usuarios where id" + Id;
-            var cmd = Banco.abrir();
+            string query = "select * from usuarios where id = " + id;
+            var cmd = Banco.Abrir();
             cmd.CommandText = query;
             var dr = cmd.ExecuteReader();
             while (dr.Read())

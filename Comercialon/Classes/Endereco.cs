@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
+﻿using System.Collections.Generic;
 
 namespace Comercialon.Classes
 {
@@ -47,11 +42,12 @@ namespace Comercialon.Classes
             Tipo = tipo;
             Uf = uf;
         }
-        public void Inserir(int idCliente)
+        public void Inserir(int IdCliente)
         {
             var cmd = Banco.Abrir();
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.CommandText = "inserir_enderecos";
+            cmd.Parameters.AddWithValue("Cliente_id", this.IdCliente);
             cmd.Parameters.AddWithValue("_cep", Cep);
             cmd.Parameters.AddWithValue("_logradouro", Logradouro);
             cmd.Parameters.AddWithValue("_numero", Numero);

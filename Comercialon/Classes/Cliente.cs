@@ -9,7 +9,7 @@ namespace Comercialon.Classes
     {
         //declaração de Propriedade
         //private int id;
-        
+
         //public int Id { get => id; set => id = value; }
         public int Id { get; set; }
         public string Nome { get; set; }
@@ -22,7 +22,7 @@ namespace Comercialon.Classes
         public Cliente() { Id = 0; }
 
         //cronstutores
-        public Cliente(string nome, string cpf, string email, string telefone, bool ativo = true,List<Endereco> endereco = null)
+        public Cliente(string nome, string cpf, string email, string telefone, bool ativo = true, List<Endereco> endereco = null)
         {
             Nome = nome;
             Cpf = cpf;
@@ -47,7 +47,7 @@ namespace Comercialon.Classes
         }
 
         //metodos da classe
-        public void Inserie() 
+        public void Inserie()
         {   //inserir usando concatenações
 
             //inserir utilizando expressões mysql
@@ -73,10 +73,10 @@ namespace Comercialon.Classes
             cmd.Parameters.AddWithValue("_nome", Nome).Direction = ParameterDirection.Input;
             cmd.Parameters.AddWithValue("_email", Email).Direction = ParameterDirection.Input;
             cmd.Parameters.AddWithValue("_telefone", Telefone).Direction = ParameterDirection.Input;
-            int ret =  cmd.ExecuteNonQuery();
-            if (ret==1)
+            int ret = cmd.ExecuteNonQuery();
+            if (ret == 1)
             {
-                 return true;
+                return true;
             }
             else
             {
@@ -124,7 +124,7 @@ namespace Comercialon.Classes
 
     }
 }
-    
+
 
 //public Cliente(int id, int nome)
 //{

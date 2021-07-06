@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Comercialon.Formularios
@@ -29,6 +22,13 @@ namespace Comercialon.Formularios
             FrmProdutos frmProdutos = new FrmProdutos();
             frmProdutos.MdiParent = this;
             frmProdutos.Show();
+        }
+
+        private void tsmCadrastoUsuario_Click(object sender, EventArgs e)
+        {
+            FrmUsuarios frmUsuarios = new FrmUsuarios();
+            frmUsuarios.MdiParent = this;
+            frmUsuarios.Show();
         }
     }
 }

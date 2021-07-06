@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Comercialon.Classes;
+using System;
 using System.Windows.Forms;
-using Comercialon.Classes;
 
 namespace Comercialon.Formularios
 {
@@ -16,24 +16,24 @@ namespace Comercialon.Formularios
             MskCPF.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
 
             Usuario usuario = new Usuario(
-                TXBNome.Text,
-                TXBEmail.Text,
-                TXBSenha.Text,
+                TxtNome.Text,
+                TxtEmail.Text,
+                TxtSenha.Text,
                 CbNivel.Text,
                 MskCPF.Text
             );
-            usuario.Inserir();
-            TxBID.Text = Usuario.Id.ToString();
-            MessageBox.Show("Usuario " + Usuario.Id + " inserido.");
+            usuario.Inserir_Usuario();
+            TxtID.Text = usuario.Id.ToString();
+            MessageBox.Show("Usuario " + usuario.Id + " inserido.");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Usuario usuario = new Usuario();
-            usuario.Id = int.Parse(TxBID.Text);
-            usuario.Nome = TXBNome.Text;
-            usuario.Email = TXBEmail.Text;
-            usuario.Senha = TXBSenha.Text;
+            usuario.Id = int.Parse(TxtID.Text);
+            usuario.Nome = TxtNome.Text;
+            usuario.Email = TxtEmail.Text;
+            usuario.Senha = TxtSenha.Text;
             usuario.Nivel = CbNivel.Text;
             usuario.Cpf = MskCPF.Text;
             if (usuario.Alterar())

@@ -88,14 +88,14 @@
             // tsmCadrastoProdutosNovo
             // 
             this.tsmCadrastoProdutosNovo.Name = "tsmCadrastoProdutosNovo";
-            this.tsmCadrastoProdutosNovo.Size = new System.Drawing.Size(180, 22);
+            this.tsmCadrastoProdutosNovo.Size = new System.Drawing.Size(103, 22);
             this.tsmCadrastoProdutosNovo.Text = "&Novo";
             this.tsmCadrastoProdutosNovo.Click += new System.EventHandler(this.tsmCadrastoProdutosNovo_Click);
             // 
             // tsmCadrastoProdutosLista
             // 
             this.tsmCadrastoProdutosLista.Name = "tsmCadrastoProdutosLista";
-            this.tsmCadrastoProdutosLista.Size = new System.Drawing.Size(180, 22);
+            this.tsmCadrastoProdutosLista.Size = new System.Drawing.Size(103, 22);
             this.tsmCadrastoProdutosLista.Text = "&Lista";
             // 
             // tsmCadrastoUsuario
@@ -103,6 +103,7 @@
             this.tsmCadrastoUsuario.Name = "tsmCadrastoUsuario";
             this.tsmCadrastoUsuario.Size = new System.Drawing.Size(180, 22);
             this.tsmCadrastoUsuario.Text = "&Usuário";
+            this.tsmCadrastoUsuario.Click += new System.EventHandler(this.tsmCadrastoUsuario_Click);
             // 
             // tsmOperacoes
             // 
