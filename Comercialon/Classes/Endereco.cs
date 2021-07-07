@@ -47,7 +47,7 @@ namespace Comercialon.Classes
             var cmd = Banco.Abrir();
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.CommandText = "inserir_enderecos";
-            cmd.Parameters.AddWithValue("Cliente_id", this.IdCliente);
+            cmd.Parameters.AddWithValue("_Cliente_id", this.IdCliente);
             cmd.Parameters.AddWithValue("_cep", Cep);
             cmd.Parameters.AddWithValue("_logradouro", Logradouro);
             cmd.Parameters.AddWithValue("_numero", Numero);

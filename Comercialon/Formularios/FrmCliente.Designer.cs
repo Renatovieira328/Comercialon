@@ -611,7 +611,6 @@ namespace Comercialon
 
         public EventHandler btnEditarAlterar_Click { get; private set; }
         public EventHandler btnInserir_Click { get; private set; }
-        public EventHandler dgvClientes_SelectionChanged { get; private set; }
         public KeyEventHandler dgvClientes_KeyDown { get; private set; }
         public EventHandler txtCep_TextChanged { get; private set; }
     }

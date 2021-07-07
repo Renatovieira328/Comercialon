@@ -192,10 +192,38 @@ namespace Comercialon
 
         }
 
+        private void dgvClientes_SelectionChanged(object sender, EventArgs e)
+        {
+            dgvEndereco.Rows.Clear(); // limpar o datagrid
+            int idCli = Convert.ToInt32(dgvClientes.Rows[dgvClientes.CurrentRow.Index].Cells[0].Value);
+            var listaEnd = Endereco.ListaEnderecos(idCli);
+            if (listaEnd.Count > 0)
+            {
+                foreach (var item in listaEnd)
+                {
+                    dgvEndereco.Rows.Add();
+                    dgvEndereco.Rows[dgvEndereco.Rows.Count - 1].Cells[0].Value = item.Tipo;
+                    dgvEndereco.Rows[dgvEndereco.Rows.Count - 1].Cells[1].Value = item.Cep;
+                    StringBuilder endereco = new StringBuilder();
+                    endereco.Append(item.Logradouro);
+                    endereco.Append(", " + item.Numero);
+                    endereco.Append(" - " + item.Bairro);
+                    dgvEndereco.Rows[dgvEndereco.Rows.Count - 1].Cells[2].Value = endereco;
+                }
+            }
+            else
+            {
+                dgvEndereco.Rows.Add();
+                string mensagem = "Não há endereços cadastrados";
+                dgvEndereco.Rows[dgvEndereco.Rows.Count - 1].Cells[2].Value = mensagem;
+            }
+        }
+
         private void btnNovoEndereco_Click(object sender, EventArgs e)
         {
             Endereco endereco = new Endereco
-              (txtLogradouro.Text,
+              (
+                txtLogradouro.Text,
                 txtNumero.Text,
                 txtComplemento.Text,
                 txtCep.Text,
